@@ -1,0 +1,2 @@
+read_verilog blinky_pushbutton.v
+synth_ecp5 -noccu2 -nomux -nodram -json blinky_pushbutton_yosys.json
