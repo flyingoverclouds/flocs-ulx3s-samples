@@ -3,6 +3,14 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# OSS ECP5 toolchain ignore
+*_yosys.json 
+*.history
+*_out.config
+*.bit
+
+
+
 # User-specific files
 *.rsuser
 *.suo
