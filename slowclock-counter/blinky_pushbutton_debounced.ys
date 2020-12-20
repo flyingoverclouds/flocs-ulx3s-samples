@@ -1,0 +1,4 @@
+read_verilog debouncer.v
+read_verilog clocksync.v
+read_verilog blinky_pushbutton_debounced.v
+synth_ecp5 -noccu2 -nomux -nodram -json blinky_pushbutton_debounced_yosys.json
