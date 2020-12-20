@@ -1,0 +1,3 @@
+read_verilog slowclock_module.v
+read_verilog slowcounter.v
+synth_ecp5 -noccu2 -nomux -nodram -json slowcounter_yosys.json
