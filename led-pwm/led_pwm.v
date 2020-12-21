@@ -7,15 +7,12 @@ module top(
     // keep esp32 board from rebooting (specific for ulx3s board)
     assign wifi_gpio0 = 1'b1;
     
-    // reg [7:0] o_led=0;
-    // assign led= o_led;
-
     //**************** debounce button UP
     wire debouncedUP;     
     debouncer dUP(      
         .clk(clk_25mhz),                
         .inputSignal(btn[3]) ,          
-         .debouncedSignal(debouncedUP)    
+        .debouncedSignal(debouncedUP)    
     ); 
     
     //**************** debounce button DOWN
@@ -23,23 +20,35 @@ module top(
     debouncer dDOWN(      
         .clk(clk_25mhz),                
         .inputSignal(btn[4]) ,          
-         .debouncedSignal(debouncedDOWN)    
+        .debouncedSignal(debouncedDOWN)    
     ); 
     
 
     reg [7:0] pwmLevelCounter = 0;  // the 7bits (256 value) of desired pwmLevel
-    //each time a button up or down is pressed 
-    always @(posedge(debouncedUP | debouncedDOWN) ) 
+    
+    always @(posedge(debouncedUP | debouncedDOWN) ) //each time a button up or down is pressed 
     begin
         if(debouncedUP==1)
-            pwmLevelCounter <= pwmLevelCounter + 1; // increment counter
+            pwmLevelCounter <= pwmLevelCounter + 16; // increment counter
         else 
-            pwmLevelCounter <= pwmLevelCounter - 1; // decrement counter
-        
+            pwmLevelCounter <= pwmLevelCounter - 16; // decrement counter
     end
 
-    assign led = pwmLevelCounter; // for debug : display counter on led
+    pwmGenerator pwm( 
+        .clk(clk_25mhz),
+        .level(pwmLevelCounter),
+        .pwmSignal(pwmLevel)
+    );
+    wire pwmLed;
 
-  
+    assign led[0] = pwmLevel;
+    assign led[1] = pwmLevel;
+    assign led[2] = pwmLevel;
+    assign led[3] = pwmLevel;
+    assign led[4] = pwmLevel;
+    assign led[5] = pwmLevel;
+    assign led[6] = pwmLevel;
+    assign led[7] = pwmLevel;
+
 
 endmodule
