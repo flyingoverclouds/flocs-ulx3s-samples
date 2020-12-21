@@ -12,3 +12,7 @@ the blinky-pushbutton-debounced project add a debouncer (implemented in a verilo
 
 ### [Slowclock counter](slowclock-counter/)
 This project demonstrate how to generate a slower clock signal deriving from the main 25mhz clock and feedind a counter wired to led. 
+
+
+### [LED PWM](led-pwm/)
+This project demonstrate how to generate a PWM signal and use it to vary led light intensity
