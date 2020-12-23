@@ -1,13 +1,13 @@
-// this module produce a 256 level PWM signal.
+// this module produce a 16 level PWM signal.
 
 
 module pwmGenerator(
     input clk,  // clk signal 
-    input [7:0] level, // the tick count (of 256) where signal is up
+    input [3:0] level, // the tick count (of 256) where signal is up
     output reg pwmSignal, // the pwm signal
     );
 
-    reg [7:0] counter=0; // pwm counter
+    reg [3:0] counter=0; // pwm counter
     always @(posedge clk)
     begin
         if (counter>level) // if counter > ratio -> output signal is DOWN
