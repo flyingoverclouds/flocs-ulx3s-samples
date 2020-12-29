@@ -1,0 +1,3 @@
+read_verilog pwm.v
+read_verilog led_glow.v
+synth_ecp5 -noccu2 -nomux -nodram -json led_glow_yosys.json
