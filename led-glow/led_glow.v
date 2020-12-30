@@ -12,6 +12,9 @@ module top(
         cnt <= cnt+1;
     end
 
+    wire blueLed;
+    assign blueLed = cnt[26];
+
     wire[3:0] pwmValue; // this wires will propagate the pwm value request
 
     assign pwmValue[3]= cnt[25] ? cnt[24] : ~cnt[24];
@@ -27,15 +30,28 @@ module top(
         .pwmSignal(pwm2led)
     );
 
+    // the next 8 lines glow red/blue led simultaneously but with intensity inverted. 
+    // assign led[0]=~pwm2led; // glowing 'red' led inverted
+    // assign led[1]=~pwm2led; // glowing 'red' led inverted
+    // assign led[2]=pwm2led;  // glowing 'blue' led
+    // assign led[3]=pwm2led;  // glowing 'blue' led
+    // assign led[4]=~pwm2led; // glowing 'red' led inverted
+    // assign led[5]=~pwm2led;// glowing 'red' led inverted
+    // assign led[6]=pwm2led;  // glowing 'blue' led
+    // assign led[7]=pwm2led;  // glowing 'blue' led
 
-    assign led[0]=~pwm2led; // glowing led inverted
-    assign led[1]=~pwm2led; // glowing led inverted
-    assign led[2]=pwm2led;  // glowing led
-    assign led[3]=pwm2led;  // glowing led
-    assign led[4]=~pwm2led; // glowing led inverted
-    assign led[5]=~pwm2led;;// glowing led inverted
-    assign led[6]=pwm2led;  // glowing led
-    assign led[7]=pwm2led;  // glowing led
+
+    // the next 8 line glow alternalively red / blue line (aka : police light :) )
+    assign led[0]=~blueLed & ~pwm2led; // glowing 'red' led
+    assign led[1]=~blueLed & ~pwm2led; // glowing 'red' led 
+    assign led[2]=blueLed  & ~pwm2led;  // glowing 'blue' led
+    assign led[3]=blueLed  & ~pwm2led;  // glowing 'blue' led
+    assign led[4]=~blueLed & ~pwm2led; // glowing 'red' led 
+    assign led[5]=~blueLed & ~pwm2led;// glowing 'red' led 
+    assign led[6]=blueLed  & ~pwm2led;  // glowing 'blue' led
+    assign led[7]=blueLed  & ~pwm2led;  // glowing 'blue' led
+
+
 
 
 endmodule

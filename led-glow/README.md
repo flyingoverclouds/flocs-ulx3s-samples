@@ -8,6 +8,8 @@ and change the PWM thresold using a counter
 Each files contains comments describing behaviour & algorithm.
 
 __led_glow.v__ : The main verilog file
+    Glow onboard leds with inverted intensity (red / blue). 
+    You can comment/uncomment led wiring to activiate police light effect : glow alternatively blue and red leds.
 
 __pwm.v__ : the PWM module
 
