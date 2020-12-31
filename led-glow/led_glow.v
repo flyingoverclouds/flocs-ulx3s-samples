@@ -13,14 +13,14 @@ module top(
     end
 
     wire blueLed;
-    assign blueLed = cnt[26];
+    assign blueLed = cnt[25];
 
     wire[3:0] pwmValue; // this wires will propagate the pwm value request
 
-    assign pwmValue[3]= cnt[25] ? cnt[24] : ~cnt[24];
-    assign pwmValue[2]= cnt[25] ? cnt[23] : ~cnt[23];
-    assign pwmValue[1]= cnt[25] ? cnt[22] : ~cnt[22];
-    assign pwmValue[0]= cnt[25] ? cnt[21] : ~cnt[21];
+    assign pwmValue[3]= cnt[24] ? cnt[23] : ~cnt[23];
+    assign pwmValue[2]= cnt[24] ? cnt[22] : ~cnt[22];
+    assign pwmValue[1]= cnt[24] ? cnt[21] : ~cnt[21];
+    assign pwmValue[0]= cnt[24] ? cnt[20] : ~cnt[20];
 
     // instantiate a PWM generator and connect it to a wire
     wire pwm2led;
